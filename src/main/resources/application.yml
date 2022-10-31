@@ -1,0 +1,8 @@
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: exchange-rates-api
+---
+server:
+  port: 8080
