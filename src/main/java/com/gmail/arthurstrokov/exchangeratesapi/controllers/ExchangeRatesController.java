@@ -3,6 +3,8 @@ package com.gmail.arthurstrokov.exchangeratesapi.controllers;
 import com.gmail.arthurstrokov.exchangeratesapi.gateway.ExchangeRatesFeignClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -34,6 +36,7 @@ public class ExchangeRatesController {
         return exchangeRatesFeignClient.getAllRates(periodicity);
     }
 
+    @Retryable(maxAttempts = 5, backoff = @Backoff(delay = 5000))
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/rates/{cur_id}")
     public String getRates(
