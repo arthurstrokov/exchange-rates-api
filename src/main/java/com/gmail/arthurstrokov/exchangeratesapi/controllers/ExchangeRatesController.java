@@ -2,10 +2,8 @@ package com.gmail.arthurstrokov.exchangeratesapi.controllers;
 
 import com.gmail.arthurstrokov.exchangeratesapi.gateway.ExchangeRatesFeignClient;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Артур Александрович Строков
@@ -18,21 +16,25 @@ public class ExchangeRatesController {
 
     private final ExchangeRatesFeignClient exchangeRatesFeignClient;
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/currencies")
     public String getAllExchangeRates() {
         return exchangeRatesFeignClient.getCurrencies();
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/currencies/{cur_id}")
     public String getExchangeRates(@PathVariable String cur_id) {
         return exchangeRatesFeignClient.getCurrency(cur_id);
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/rates")
     public String getAllRates(@RequestParam(value = "periodicity", defaultValue = "0") String periodicity) {
         return exchangeRatesFeignClient.getAllRates(periodicity);
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/rates/{cur_id}")
     public String getRates(
             @PathVariable String cur_id,
