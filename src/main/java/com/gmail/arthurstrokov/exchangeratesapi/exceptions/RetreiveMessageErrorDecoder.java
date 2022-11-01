@@ -2,6 +2,7 @@ package com.gmail.arthurstrokov.exchangeratesapi.exceptions;
 
 import com.gmail.arthurstrokov.exchangeratesapi.configuration.ExceptionMessage;
 import feign.Response;
+import feign.RetryableException;
 import feign.codec.ErrorDecoder;
 
 import java.time.LocalDateTime;
@@ -24,6 +25,7 @@ public class RetreiveMessageErrorDecoder implements ErrorDecoder {
         return switch (response.status()) {
             case 400 -> new BadRequestException(message.getReason() != null ? message.getReason() : "Bad Request");
             case 404 -> new NotFoundException(message.getReason() != null ? message.getReason() : "Not found");
+            case 500 -> new RetryableException(500, response.reason(), response.request().httpMethod(), null, response.request());
             default -> errorDecoder.decode(methodKey, response);
         };
     }
