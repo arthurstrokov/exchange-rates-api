@@ -34,7 +34,10 @@ public class ExchangeRatesController {
     }
 
     @GetMapping("/rates/{cur_id}")
-    public String getRates(@PathVariable String cur_id, @RequestParam(value = "periodicity", defaultValue = "0") String periodicity) {
-        return exchangeRatesFeignClient.getRates(cur_id, periodicity);
+    public String getRates(
+            @PathVariable String cur_id,
+            @RequestParam(value = "ondate", required = false) String ondate,
+            @RequestParam(value = "periodicity", defaultValue = "0") String periodicity) {
+        return exchangeRatesFeignClient.getRates(cur_id, ondate, periodicity);
     }
 }
