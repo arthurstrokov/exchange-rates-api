@@ -6,3 +6,18 @@ spring:
 ---
 server:
   port: 8080
+---
+logging:
+  level:
+    com:
+      gmail:
+        arthurstrokov:
+          exchangeratesapi:
+            gateway:
+              ExchangeRatesFeignClient: debug
+---
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: FULL

@@ -29,7 +29,12 @@ public class ExchangeRatesController {
     }
 
     @GetMapping("/rates")
-    public String getRates(@RequestParam(value = "periodicity", defaultValue = "0") String periodicity) {
-        return exchangeRatesFeignClient.getRates(periodicity);
+    public String getAllRates(@RequestParam(value = "periodicity", defaultValue = "0") String periodicity) {
+        return exchangeRatesFeignClient.getAllRates(periodicity);
+    }
+
+    @GetMapping("/rates/{cur_id}")
+    public String getRates(@PathVariable String cur_id, @RequestParam(value = "periodicity", defaultValue = "0") String periodicity) {
+        return exchangeRatesFeignClient.getRates(cur_id, periodicity);
     }
 }
