@@ -26,8 +26,8 @@ public class ExchangeRatesController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/currencies/{cur_id}")
-    public String getExchangeRates(@PathVariable String cur_id) {
-        return exchangeRatesFeignClient.getCurrency(cur_id);
+    public String getExchangeRates(@PathVariable("cur_id") String currentId) {
+        return exchangeRatesFeignClient.getCurrency(currentId);
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -40,9 +40,9 @@ public class ExchangeRatesController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/rates/{cur_id}")
     public String getRates(
-            @PathVariable String cur_id,
+            @PathVariable("cur_id") String currentId,
             @RequestParam(value = "ondate", required = false) String ondate,
             @RequestParam(value = "periodicity", defaultValue = "0") String periodicity) {
-        return exchangeRatesFeignClient.getRates(cur_id, ondate, periodicity);
+        return exchangeRatesFeignClient.getRates(currentId, ondate, periodicity);
     }
 }
