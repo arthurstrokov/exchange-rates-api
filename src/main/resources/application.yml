@@ -22,3 +22,5 @@ feign:
       default:
         errorDecoder: com.gmail.arthurstrokov.exchangeratesapi.exceptions.RetreiveMessageErrorDecoder
         loggerLevel: basic
+        connectTimeout: 1000
+        readTimeout: 6000
