@@ -18,15 +18,15 @@ public interface ExchangeRatesFeignClient {
     String getCurrencies();
 
     @GetMapping("/currencies/{cur_id}")
-    String getCurrency(@PathVariable("cur_id") String cur_id);
+    String getCurrency(@PathVariable("cur_id") String currentId);
 
     @GetMapping("/rates")
     String getAllRates(@RequestParam("periodicity") String periodicity);
 
     @GetMapping("/rates/{cur_id}")
     String getRates(
-            @PathVariable("cur_id") String cur_id,
-            @RequestParam("ondate") String ondate,
+            @PathVariable("cur_id") String currentId,
+            @RequestParam("ondate") String onDate,
             @RequestParam("periodicity") String periodicity
     );
 }
