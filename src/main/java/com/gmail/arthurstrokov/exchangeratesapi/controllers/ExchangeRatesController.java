@@ -20,13 +20,13 @@ public class ExchangeRatesController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/currencies")
-    public String getAllExchangeRates() {
+    public String getAllCurrencies() {
         return exchangeRatesFeignClient.getCurrencies();
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/currencies/{cur_id}")
-    public String getExchangeRates(@PathVariable("cur_id") String currentId) {
+    public String getCurrency(@PathVariable("cur_id") String currentId) {
         return exchangeRatesFeignClient.getCurrency(currentId);
     }
 
