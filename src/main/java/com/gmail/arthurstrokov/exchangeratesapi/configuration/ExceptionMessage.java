@@ -15,7 +15,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ExceptionMessage {
-    private String timestamp;
+
     private int status;
     private String reason;
 }
