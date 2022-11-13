@@ -22,5 +22,9 @@ feign:
       default:
         errorDecoder: com.gmail.arthurstrokov.exchangeratesapi.exceptions.RetreiveMessageErrorDecoder
         loggerLevel: basic
-        connectTimeout: 1000
+        connectTimeout: ${bus.timeout}
         readTimeout: 6000
+
+bus:
+  currency: https://www.nbrb.by/api/exrates
+  timeout: 1000

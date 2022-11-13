@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @email astrokov@clevertec.ru
  * @created 31.10.2022
  */
-@FeignClient(name = "exchange-rates", url = "https://www.nbrb.by/api/exrates", configuration = {FeignSupportConfig.class})
+@FeignClient(name = "exchange-rates", url = "${bus.currency}", configuration = {FeignSupportConfig.class})
 public interface ExchangeRatesFeignClient {
 
     @GetMapping("/currencies")
